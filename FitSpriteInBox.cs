@@ -11,7 +11,6 @@ public class FitSpriteInBox : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public bool preserveAspect = true;
 
-
     private void Start()
     {
         UpdateSpriteSize();        
@@ -24,7 +23,7 @@ public class FitSpriteInBox : MonoBehaviour
 
     private void UpdateSpriteSize ()
     {
-        //if(lastSize == boxSize) return;
+        if(lastSize == boxSize) return;
         if(spriteRenderer == null) {
             spriteRenderer = GetComponent<SpriteRenderer> ();
             if(spriteRenderer == null) return;
