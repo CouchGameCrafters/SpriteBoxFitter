@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,8 @@ public class FitSpriteInBox : MonoBehaviour
     private Vector2 lastSize = Vector2.zero;
     private SpriteRenderer spriteRenderer;
     public bool preserveAspect = true;
+    private bool lastPreserveAspect = false;
+
 
     private void Start()
     {
@@ -23,7 +25,8 @@ public class FitSpriteInBox : MonoBehaviour
 
     private void UpdateSpriteSize ()
     {
-        if(lastSize == boxSize) return;
+        if(lastSize == boxSize && lastPreserveAspect == preserveAspect) return;
+
         if(spriteRenderer == null) {
             spriteRenderer = GetComponent<SpriteRenderer> ();
             if(spriteRenderer == null) return;
@@ -42,9 +45,9 @@ public class FitSpriteInBox : MonoBehaviour
         } else {
             transform.localScale = new Vector3((boxSize.x / size.x), (boxSize.y / size.y), 1f);
         }
-        
 
         lastSize = boxSize;
+        lastPreserveAspect = preserveAspect;
     }
 
     #if UNITY_EDITOR
